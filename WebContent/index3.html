@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>드래그테스트</title>
+	<style>
+	  .container{
+	  width: 800px;
+	  height: 400px;
+	  border : 1px solid gray
+	  }
+	
+	.box {
+		width: 100px;
+		height: 100px;
+		background: blue;
+		position: absolute;
+	}
+	</style>
+</head>
+<body>
+
+<section id="section7">
+	<script>
+	window.addEventListener("load", function(){
+		var section = document.querySelector("#section7");
+		var container = section.querySelector(".container");
+		var box = section.querySelector(".box");
+		var dragging = false;
+		var offset = {x:0, y:0};
+		
+		container.onmousedown = function(e){
+			if(e.target === box) // 타겟이 박스냐? 컨테이너 실행해도 안움직임..박스를 클릭해야함..
+				dragging = true; //드래그 상태라는걸 알려줌
+			
+		};
+		
+		
+		//컨테이너 안에서 클릭을하면 좌표를 얻어라...
+		container.onmousemove = function(e){
+			if(!dragging) return;
+			box.style.left = e.pageX-offset.x+"px"; 
+			box.style.top = e.pageY-offset.y+"px";
+		};
+		
+		container.onmouseup = function(e){
+			dragging = false;
+			
+		};
+		
+		//박스위에서 마우스 다운되었을때 박스로부터 offset을 구하는것...
+		//이걸 드래그할때 쓴다..
+		box.onmousedown = function(e){
+			offset.x = e.offsetX;
+			offset.y = e.offsetY;
+		}
+	 });
+	</script>
+	
+	<div class="container">
+		 <div class="box"></div>
+	</div>
+</section>
+
+<br><br><br>
+<h6>------------------------------</h6>
+<!-- 
+<section id="section6">
+
+	<script>
+	window.addEventListener("load", function(){
+		var section = document.querySelector("#section6");
+		var container = section.querySelector(".container");
+		var box = section.querySelector(".box");
+		
+		//컨테이너 안에서 클릭을하면 좌표를 얻어라...
+		container.onclick = function(e){
+			//e.x, e.y / e.offsetX, e.offsetY / e.clientX, e.pageX
+			//client 화면에 보여지는 영역을 기준으로 
+			//page 전체 문서 기준
+			//offsetxy  클릭한 영역에 좌표기준 만약 감싸는 div 클릭하면 그 div 기준
+			//흔히쓰이는 이벤트.x y는 클라이언트기반
+			console.log("(x,y):"+e.x+","+e.y);
+			console.log("(x,y):"+e.clientX+","+e.clientY);
+			console.log("(x,y):"+e.pageX+","+e.pageY);
+			console.log("(x,y):"+e.offsetX+","+e.offsetY);
+			box.style.position = "absolute";
+			box.style.left = e.x+"px"; //단위를 꼭 써줘야한다
+			box.style.top = e.y+"px";
+			
+		};
+	 });
+	</script>
+	
+	<div class="container">
+		 <div class="box"></div>
+	</div>
+</section>
+ -->
+</body>
+</html>

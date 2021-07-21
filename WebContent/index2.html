@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="jqueryui/style.css">
+  <style>
+  #draggable { 
+  width: 150px; 
+  height: 150px; 
+  padding: 0.5em; 
+  border: 1px solid black;
+  cursor : move;
+  
+  }
+  </style>
+
+</head>
+
+<body>
+
+ <div id="draggable" class="edit">
+  <p>오브젝트</p>
+</div>
+
+
+  <script>
+  
+  var buttonID;
+  
+  $(".edit").click (function(){
+	    buttonID = $(this).attr('id');
+	    console.log(buttonID);
+	})
+  
+  
+  $(function() {
+    $(draggable).draggable();
+  });
+  </script>
+  
+
+</body>
+</html>
