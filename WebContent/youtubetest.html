@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+<style>
+.video {
+	  width: 100%;
+	  max-width: 900px;
+	  margin: 30px auto;
+	  border-radius: 30px;
+	  background-color: #f0f0f0;
+	  padding: 40px;
+	  box-sizing: border-box;
+	  box-shadow: 0px 8px 33px #999;
+	}
+	 
+	.video-container {
+	  position: relative;
+	  width: 100%;
+	  height: auto;
+	  padding-top: 50%;
+	}
+	 
+	iframe {
+	  z-index: 1;
+	  top: 0;
+	  left: 0;
+	  position: absolute;
+	  width: 100%;
+	  height: 100%;
+	}
+
+</style>
+<h5>유튜브 테스트</h5>
+	
+<h1>Responsive Video</h1>
+
+<div class="video-container">
+
+
+<iframe width="420" height="315"
+src="https://www.youtube.com/embed/cbuZfY2S2UQ?controls=1&start=60" frameborder="0" allowfullscreen>
+</iframe>
+</div>
+
+<button id="controlObj">재생/정지</button>
+
+<script>
+$('#controlObj').on('click', function() {
+    $('.video-container')[0].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
+});
+
+</script>
+
+</body>
+</html>
