@@ -3,9 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-</head>
-<body>
 <style>
 .video {
 	  width: 100%;
@@ -35,24 +32,37 @@
 	}
 
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(function(){
+	$("#btn1").click(function(){
+		
+		  const element = document.getElementById('here');
+		  element.innerHTML = "<div style='color:red'>A</div>";
+	});
+});
+</script>
+
+</head>
+<body>
+
 <h5>유튜브 테스트</h5>
 	
 <h1>Responsive Video</h1>
 
-<div class="video-container">
-<iframe width="420" height="315"
-src="https://www.youtube.com/embed/cbuZfY2S2UQ?controls=1&start=60" frameborder="0" allowfullscreen>
-</iframe>
+<button id="btn1">ddd</button>
+
+<div id="here">
+<p>여기</p>
+	<div class="video-container">
+	<iframe width="420" height="315" id="youtubevideo" 
+	src="https://www.youtube.com/embed/TIVJOki0Qd0?start=61" frameborder="0" allowfullscreen>
+	</iframe>
+	</div>
 </div>
 
-<button id="controlObj">재생/정지</button>
 
-<script>
-$('#controlObj').on('click', function() {
-    $('.video-container')[0].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
-});
 
-</script>
 
 </body>
 </html>

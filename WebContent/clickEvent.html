@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(function(){
+	$("#innerHTML").click(function(){
+		  const element = document.getElementById('here');
+		  element.innerHTML = "<div style='color:red'>A</div>";
+	});
+});
+
+function innerTexttest()  {
+  const element = document.getElementById('here');
+  element.innerText = "<div style='color:red'>A</div>";
+	} 
+	
+
+	
+/* 	function innerText() {
+		  document.getElementById("here").innerText = "<div style='color:red'>A</div>";
+		} */
+	
+	function test(){
+		alert("ddddd")
+	}
+</script>
+
+</head>
+<body>
+
+<button id="innerHTML">innerHTML</button>
+<button onclick="innerTexttest();">innerText</button>
+
+<div id="here"> <p>여기</p> </div>
+
+
+
+
+</body>
+</html>
