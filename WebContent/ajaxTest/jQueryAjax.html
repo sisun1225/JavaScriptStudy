@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+//페이지 이동 없이 서버에 자원을 요청
+$(function() {
+	$("#btn1").on("click", function(){
+		var xhr = new XMLHttpRequest();
+		xhr.open("get","jQueryEvent.html",true);//어디로갈꺼야 정의(무슨방식으로?, 어디로갈껀데?, 비동기라면true)
+		xhr.onreadystatechange = function(){  //서버와 주고받는 상태를 다 알고있음
+			if(xhr.readyState==4 && xhr.status==200){
+				here.innerHTML = xhr.responseText;
+			}
+		};
+		xhr.send();		
+	});
+	
+	$("#btn2").on("click", function(){    //html의 경우 파싱이 필요없이 바로 불러올수있다
+		$("#here").load("result.jsp");
+	});
+	$("#btn3").on("click", function(){
+		$.ajax({
+			url:"전국도서관표준데이터.json",
+			type:"get",
+			success:function(responsedata){
+				//파싱이 되었다는 의미는 객체로 왔다는 의미
+				//json data받기
+				console.log(responsedata);
+				//도서관 이름들 가져오기
+				var arr = responsedata["records"];
+				var s = "";
+				for(var i=0; i<arr.length; i++){
+					s += arr[i]["도서관명"] +"<br>";
+				}
+				$("#here").html(s);
+				//$("#here").html(responsedata);
+			},
+			error:function(){}
+		});
+	});
+	//json만 쓸때는 getjson을 쓰면되고 이것저것 다 써야한다면 에이작스
+	$("#btn4").on("click", function(){
+		var url = "전국도서관표준데이터.json";
+		
+		$.getJSON(url, function(responsedata) {
+			//도서관 이름들 가져오기
+			var arr = responsedata["records"];
+			var s = "";
+			for(var i=0; i<arr.length; i++){
+				s += arr[i]["도서관명"] +"<br>";
+			}
+			$("#here").html(s);
+			
+		});
+	});
+	
+	
+	$("#btn5").on("click", function(){
+		$.ajax({
+			url:"loginChk.jsp", 
+			type:"get",   //loginchk.jsp로 겟방식으로 보낸다.
+			data:{ "userid":$("#userid").val(), 
+				   "email":$("#useremail").val() },
+			success:function(responsedata){
+				$("#here").html(responsedata);
+			},
+			error:function(){}
+		});
+	});
+	
+	
+	
+	
+	
+	$("#btn6").on("click", function(){
+		$.ajax({
+			url:"loginChk2.jsp", 
+			type:"get",  
+			data:{ "userid":$("#userid").val(), 
+				   "email":$("#useremail").val() },
+			success:function(responseData){
+				//반드시 데이터 형식이 JSON이어야한다 {"KEY":"VALUE"} 형식이어야한다 
+				// 형식을 지키지않으면 parse에러가 난다. 
+				var obj = JSON.parse(responseData);
+				var s="";
+				for(var key in obj){
+					s += "<p>" + key + "=>" + obj[key] +"</p>";
+				}
+				$("#here").html(s);
+			},
+			error:function(){}
+		});
+	});
+	
+	$("#btn7").on("click", function(){
+		$.ajax({
+			//주소가 너무기니깐 변수에 담아서 해도된다..
+			url:"loginChk2.jsp?userid="+$("#userid").val()+"&email="+$("#useremail").val(),
+			type:"get",  
+			success:function(responseData){
+				//반드시 데이터 형식이 JSON이어야한다 {"KEY":"VALUE"} 형식이어야한다 
+				// 형식을 지키지않으면 parse에러가 난다. 
+				var obj = JSON.parse(responseData);
+				var s="";
+				for(var key in obj){
+					s += "<p>" + key + "=>" + obj[key] +"</p>";
+				}
+				$("#here").html(s);
+			},
+			error:function(){}
+		});
+	});
+	
+	$("#btn8").on("click", function(){
+		var param=$("#myfrm").serialize();
+		alert(param);
+		$.ajax({
+			url:"loginChk2.jsp?"+param,
+			type:"get",  
+			success:function(responseData){
+				var obj = JSON.parse(responseData);
+				var s="";
+				for(var key in obj){
+					s += "<p>" + key + "=>" + obj[key] +"</p>";
+				}
+				$("#here").html(s);
+			},
+			error:function(){}
+		});
+	});
+	
+	
+	
+	
+});
+</script>
+</head>
+<body>
+<h1>Ajax(asynchronized javascript and xml)</h1>
+<button id="btn1">javascript-ajax</button>
+<button id="btn2">jquery-ajax(load)</button>
+<button id="btn3">jquery-ajax(ajax)</button>
+<button id="btn4">jquery-ajax(getJSON)</button><br>
+<hr>
+<form id="myfrm">
+아이디:<input type="number" value="100" name ="userid" id = "userid"> <br>
+이메일:<input type="text" value="web0406@daum.net" name ="email" id = "useremail"><br>
+</form>
+<button id="btn5">jquery-ajax(ajax..jsp호출5)</button>
+<button id="btn6">jquery-ajax(ajax..jsp호출6)</button>
+<button id="btn7">jquery-ajax(ajax..jsp호출7)</button>
+<button id="btn8">jquery-ajax(ajax..jsp호출8)</button>
+<div id ="here"> 여기</div>
+</body>
+</html>
