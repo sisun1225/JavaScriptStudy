@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+  ul{list-style-type:none;}
+  #here{
+  	border : 5px dotted green;
+  }
+</style>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script>
+	$(function(){
+		
+		$("#btn6").click(function(){
+			$("<h1></h1>").html("추가됨").appendTo("#here")
+			$("<img/>").attr("src","images/cup-1.png").appendTo("#here");
+			$("<img/>").attr("src","images/cup-2.png").prependTo("#here");
+			$("<img/>").attr("src","images/doit.jpg").insertBefore("#here");
+			$("<img/>").attr("src","images/dom.jpg").insertAfter("#here");
+			
+		});
+		
+		$("#btn4").click(function(){
+			$("#here").remove();
+		});
+		$("#btn5").click(function(){
+			$("#here").empty();
+		});
+		
+		$("#btn3").click(function(){
+			$("ul li img").attr("src", function(idx, fname){
+				$("#here h2").eq(idx).html(fname);
+			});
+		});
+		
+		$("#btn2").click(function(){
+			$("ul li:first-child img").removeAttr("src");
+		});
+		
+		var s="";
+		$("#btn1").click(function(){
+			
+			//$("ul li img").attr("width","200px");//모두 200으로 사이즈 변경
+			/* $("ul li img").attr("width",function(idx){
+				return (1+idx)*20+200;
+			});
+			$("ul li img").attr("height",function(idx){
+				return (1+idx)*20+100;
+			}); */
+			
+			var obj = {"width" : function(idx){	return (1+idx)*20+200;},
+					"height":function(idx){return (1+idx)*20+100;} };
+			$(" ul li img").attr(obj);
+			
+			$("ul li img").each(function(idx, item){
+				s +=$(item).attr("src")+"<br>";
+			});
+			
+			$("#here").html(s);
+		});
+		
+	});
+</script>
+</head>
+<body>
+<h1>jQuery를 이용한 객체변경</h1>
+<div id="here">
+  <h2>여기1</h2>
+  <h2>여기2</h2>
+  <h2>여기3</h2>
+  <h2>여기4</h2>
+  <h2>여기5</h2>
+  <h2>여기6</h2>
+  
+</div>
+<button id="btn1">이미지의 사이즈변경</button>
+<button id="btn2">속성제거</button>
+<button id="btn3">html(),text()</button>
+<button id="btn4">remove(객체제거)</button>
+<button id="btn5">empty(내용제거)</button>
+<button id="btn6">객체추가</button>
+ <div class="row">
+      <ul>
+        <li><img src="images/tree-1-thumb.jpg" 
+        data-src="images/tree-1.jpg" class="pic"></li>
+        <li><img src="images/tree-2-thumb.jpg" 
+        data-src="images/tree-2.jpg" class="pic"></li>
+        <li><img src="images/tree-3-thumb.jpg" 
+        data-src="images/tree-3.jpg" class="pic"></li> 
+        <li><img src="images/tree-4-thumb.jpg" 
+        data-src="images/tree-4.jpg" class="pic"></li>
+        <li><img src="images/tree-5-thumb.jpg" 
+        data-src="images/tree-5.jpg" class="pic"></li>
+        <li><img src="images/tree-6-thumb.jpg" 
+        data-src="images/tree-6.jpg" class="pic"></li>          
+      </ul>    
+    </div>
+    <img src="images/tree-1.jpg" class="pic">
+</body>
+</html>
