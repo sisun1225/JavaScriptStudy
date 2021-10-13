@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+  #here{background-color: yellow;};
+</style>
+<script src="https://cdn.jsdelivr.net/npm/underscore@1.12.1/underscore-min.js"></script>
+
+<script>
+window.onload = function(){
+	here.innerHTML = this;
+	btn1.onclick = call1;
+	btn2.onclick = call2;
+	btn3.onclick = call3;
+	btn4.onclick = call4;
+	btn5.onclick = call5;
+	btn6.onclick = call6;
+	btn7.onclick = call7;
+	btn8.onclick = call8;
+	btn9.onclick = call9;
+	btn10.onclick = call10;
+	
+}
+function call1(){
+	//object : 속성 +메서드
+	var obj = {"name":"홍길동", age:20, age2:30,"군대 여부":true, 
+			study:function(){ alert("열심히공부");},
+			자기소개:{"학교":"서울","전공":"컴공"}, score:[1,2,3,4,5]
+			
+	};
+	
+	here.innerHTML = "이름은"+obj["name"];
+	here.innerHTML += "<br>나이는"+obj["age"];
+	var aa = "age2";
+	here.innerHTML += "<br>나이는"+obj[aa];
+	here.innerHTML += "<br>군대는"+obj["군대 여부"];
+	here.innerHTML += "<br>자기소개는"+obj.자기소개.학교;
+	//here.innerHTML += "<br>군대는"+obj.군대 여부; //불가
+	//here.style["background-color"] = "pink";
+	here.style["backgroundColor"] = "green";
+	here.innerHTML += "<br>stydy는"+obj["study"];
+	obj["study"]();
+}
+function call2(){
+	var person = {
+			name:"윤인성", 
+			eat:function(food){
+				alert("점심먹자~"+food +this.name);
+			}
+	};
+	//person.eat("돈까스");
+	here.innerHTML = this;
+	
+	for(var key in person){
+		here.innerHTML += "<br>"+ key + "-->" + person[key];	
+	}
+}
+function call3(){
+	for(var key in window){
+		here.innerHTML += "<br>"+ key + "-->" + window[key];	
+	}
+}
+function call4(){
+	//object상속받아서 person을 만든다. {}이것만으로 상속받은것..
+	//object : tostring()메서드가 정의되어있다. : [object Object]
+	var person = {
+			name:"윤인성", 
+			eat:function(food){
+				alert("점심먹자~"+food +this.name);
+			}
+	};
+	person.age = 30; //존재하는 속성이 없으면  추가된다.
+	person.major = "컴공";
+	person.name = "윤인성2"; //존재하는 속성이 있으면 수정
+	person.toString = function(){ 
+		return this.name+":"+ this.age + ":" + this.major;
+		;};
+	delete person.age;
+	for(var key in person){
+		if(typeof(person[key])=="function") continue;
+		here.innerHTML += "<br>"+ key + "-->" + person[key];
+	}
+	here.innerHTML += "<br>"+ person;
+	
+}
+function call5(){
+	//배열 + 객체
+	var arr = [];
+	arr.push({name:"김길동1", kor:80, eng:90, math:80});
+	arr.push({name:"김길동2", kor:100, eng:90, math:80});
+	arr.push({name:"김길동3", kor:100, eng:80, math:80});
+	arr.push({name:"김길동4", kor:90, eng:90, math:60});
+	arr.push({name:"김길동5", kor:100, eng:90, math:80});
+	
+	//이름과 총점을 출력하라
+	for(var i in arr){
+		var total=0;
+		for(var key in arr[i]){
+			if(key =='name') continue;
+			//here.innerHTML += "<br>"+ arr[i][key];
+			total += arr[i][key];
+		}
+		here.innerHTML += "<br>"+ arr[i]["name"] + "=>" + total;
+		
+	}
+	
+	
+}
+
+function call6(){
+	var arr = [];
+	arr.push(makePerson("김길동1", 100, 90, 80));
+	arr.push(makePerson("김길동2", 100, 90, 80));
+	arr.push(makePerson("김길동3", 100, 90, 80));
+	arr.push(makePerson("김길동4", 100, 90, 80));
+	arr.push(makePerson("김길동5", 100, 90, 80));
+	
+	for(var i in arr){
+		here.innerHTML += "<br>"+ arr[i];
+		}
+		
+		
+	}
+
+function makePerson(name, kor, eng, math){
+	var obj = {
+		"name" : name, 국어:kor, "영어":eng, math:math,
+		getSum:function(){ return this.국어+this.영어+this.math;},
+		getAvg:function(){ return this.getSum()/3;},
+		toString:function(){ 
+			return this.name + "평균점수:" + this.getAvg();}	
+	};
+	
+	return obj;
+}
+
+function call7(){
+	var a=10;
+	var b=a; //값의 복사
+	a++;
+	here.innerHTML += "<br>a="+ a + "b=" +b ;
+	
+	var obj1 = {name:"홍"};
+	var obj2 = obj1; //주소의 복사
+	obj1.name = "홍2";
+	obj1.age = 20;
+	here.innerHTML += "<br>obj1="+ obj1.name + "obj2=" + obj2.name ;
+}
+
+
+function call7(){
+	var obj1 = {name:"홍"};
+	
+	var obj2 = {}
+	obj2.name = obj1.name
+	
+	obj1.name = "홍2";
+	obj1.age = 20;
+	here.innerHTML += "<br>obj1="+ obj1.name + 
+							"obj2=" + obj2.name ;
+	
+	var arr = [1,2,3,4,5];
+	var arr2 = [];
+	for(var i in arr){
+		arr2.push(arr[i]);
+	}
+	arr.push(99);
+	here.innerHTML +="<br>" + arr + "<br>" + arr2;
+}
+
+function call7(){
+	var obj1= {name:"홍"};
+	var obj2 = _.clone(obj1);
+	obj1.name = "자바스크립트";
+	here.innerHTML += "<br>obj1="+ obj1.name + 
+	"obj2=" + obj2.name ;
+	var arr =[1,2,3,4,5];
+	var arr2 = _.clone(arr);
+	arr[0] = 99;
+	here.innerHTML += "<br>"+ arr+ 
+	"<br>" + arr2 ;
+}
+
+function call8(){
+	//client -> server
+	//client <- client
+	//csv:100,200,aa,bb
+	//두번째 나온 xml : 태그가 너무 많다 본래 데이터 사이즈의 3배정도커진다 요즘 잘안쓴다.설정용도로많이쓴다
+	//json 자바스크립트형태의 문자열 
+	//JSON(JavaScriptObject Notation)
+	//자바스크립트형태의 문자열
+	//javascript object ->string 
+	var obj1 = {name:"홍", age:30, major:"컴공"};
+	here.innerHTML += "<br>"+ JSON.stringify(obj1);
+	
+	var s = '{"name":"홍","age":30,"major":"컴공"}';
+	//String ->object(parsing)
+	var obj2 = JSON.parse(s);
+	here.innerHTML += "<br>"+ obj2.major;
+	
+}
+
+function call9(){
+	var arr = [];
+	arr.push(new Student("김길동1", 100, 90, 80));
+	arr.push(new Student("김길동2", 100, 90, 80));
+	arr.push(new Student("김길동3", 100, 90, 80));
+	arr.push(new Student("김길동4", 100, 90, 80));
+	arr.push(new Student("김길동5", 100, 90, 80));
+	
+	Student.prototype.getSum = function(){return this.kor+this.eng+this.수학};
+	Student.prototype.getAvg = function(){return this.getSum()/3};
+	Student.prototype.toString = function(){
+		return this.getName()+"==>"+this.getAvg();};
+	
+	for(var i in arr){
+		here.innerHTML += "<br>"+ arr[i] + arr[i].getName();
+		}
+	
+}
+//생성자함수 :new 하면 자동 호출된다.
+function Student(name, kor, eng, math){
+	//var 있으면 지역변수이다.
+	//접근방법 공개....:getter, setter
+	var name = name;
+	this.kor = kor;
+	this.eng = eng;
+	this.수학 =math;
+	this.getName = function(){return name;};
+}
+
+function call10(){
+	Rectangle.prototype.getArea = function(){
+		return this.width*this.height;
+	};
+		Square.prototype = Rectangle.prototype;
+		Square.prototype.constructor = Square;
+		
+		var a = new Square(10);
+		alert(a.getArea());
+		alert(a instanceof Rectangle)
+		
+}
+//부모
+function Rectangle(width, height){
+	this.width = width;
+	this.height = height;
+}
+//자식
+function Square(length){
+	this.base = Rectangle;
+	this.base(length,length);
+}
+
+
+</script>
+</head>
+<body>
+<button id="btn1">object사용법1</button>
+<button id="btn2">object사용법2</button>
+<button id="btn3">object사용법3</button>
+<button id="btn4">object사용법4</button>
+<button id="btn5">object사용법5</button>
+<button id="btn6">함수로객체만들기</button>
+<button id="btn7">복사(값,주소)</button>
+<button id="btn8">json</button>
+<button id="btn9">생성자함수로객체만들기</button>
+<button id="btn10">상속</button>
+<hr>
+<div id="here">여기</div>
+</body>
+</html>

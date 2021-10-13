@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+window.onload = function(){
+	btn1.onclick = function(){
+		//자바는 기본형, wrapper class
+		//js =>기본형, 객체형 : 모두 같은 기능을 갖는다.
+		//차이점은 기본형은 메서드 추가불가, 객체형은 메서드 추가가능
+		var num1 = 10;
+		var num2 = new Number(20);
+		here.innerHTML = "기본형:" + typeof(num1)+":"+num1.toString(2);
+		here.innerHTML += "<br>Number객체형:" +typeof(num1)+":"+ num2.toString(2);
+		//num1.print = function(){here.innerHTML = "기본형메서드추가";};
+		num2.print2 = function(){here.innerHTML = "<br>number객체형 메서드추가";};
+		
+		//num1.print1();
+		num2.print2();
+	};
+	
+	btn2.onclick = function(){
+		var s = "kosta";
+		here.innerHTML=s.bold();
+		here.innerHTML+=s.italics();
+	
+	};
+	
+	
+	btn3.onclick = function(){
+		var arr1 = [10,2,30];
+		var arr2 = new Array(4,50,6);
+		var arr3 = arr1.concat(arr2);
+		here.innerHTML = arr3;
+		
+		here.innerHTML +="<br>sort 전" + arr3.join("--");
+		
+		//sort : 원본을 변경하지 않는다. 
+		//기본sort는 문자 sort이다.
+		arr3.sort();
+		here.innerHTML +="<br>sort 후" + arr3.sort();
+		
+		//sort방법을 전달한다.
+		here.innerHTML +="<br>sort 후" + 
+						arr3.sort(function(a,b){return a-b;});
+		here.innerHTML +="<br>sort 후3" + 
+		arr3.sort(function(a,b){return b-a;});
+	}
+	
+	btn4.onclick = function(){
+		var arr = [];
+		arr.push( new Student("김길동1", 100, 90, 80));
+		arr.push( new Student("김길동2", 10, 90, 80));
+		arr.push( new Student("김길동3", 100, 90, 80));
+		arr.push( new Student("김길동4", 70, 90, 80));
+		arr.push( new Student("김길동5", 100, 70, 80));	
+		
+		Student.prototype.getSum = function(){ return this.kor+this.eng+this.수학;};
+		Student.prototype.getAvg = function(){ return this.getSum()/3; };
+		Student.prototype.toString = function(){
+			return this.getName()+ "==>" + this.getAvg();}
+		
+		var arr2 = arr.sort(function(a,b){
+			return b.getAvg() - a.getAvg();
+			
+		});
+		for(var idx in arr2){
+			here.innerHTML +="<br>" +arr2[idx];
+		}
+		
+	};
+};
+
+
+//생성자함수 : new시에 자동 호출된다 
+function Student(name, kor, eng, math){
+	//var있으면 지역변수
+	//접근방법공개 : getter, setter 
+	var name = name;
+	this.kor = kor;
+	this.eng = eng;
+	this.수학= math;
+	this.getName = function(){ return name;};
+}
+
+
+
+</script>
+</head>
+<body>
+<button id="btn1">기본타입과 객체타입비교</button>
+<button id="btn2">폰트</button>
+<button id="btn3">Array</button>
+<button id="btn4">ObjectArray의 Sort</button>
+<button id="btn5">사용법5</button>
+<button id="btn6">체만들기</button>
+<button id="btn7">복사</button>
+<button id="btn8">1</button>
+<button id="btn9">1</button>
+<hr>
+<div id="here">여기</div>
+</body>
+</html>
