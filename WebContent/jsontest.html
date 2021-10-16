@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="jqueryui/style.css">
+
+</head>
+
+<body>
+<script>
+
+function test1(){
+	var obj = { one: 1, two: 2, three: 3, four: 4, five: 5 };
+	$.each(obj,function(key,value) {
+	here.innerHTML += 'key:'+key+', value:'+value+'<br>';
+	});
+}
+
+function test2(){
+//여러개의 데이타가 있을경우
+var obj2 = [{ name: "홍길동", age: "20" },{ name: "이순신", age: "30" }];
+$.each(obj2,function(key,value) {
+	here.innerHTML += 'key:'+key+', name:'+value.name+',age:'+value.age+'<br>';
+});
+}
+</script>
+<button id="btn1" onclick="test1();">테스트1</button>
+<button id="btn1" onclick="test2();">테스트2</button>
+
+<div id ="here"></div>
+
+  
+
+</body>
+</html>
