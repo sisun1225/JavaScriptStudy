@@ -22,7 +22,7 @@
 		buildTable(myArray)
 		function buildTable(data) {
 			var table = document.getElementById('table1')
-			var rowCnt = 0; 
+/* 			var rowCnt = 0; 
 
 			for (var j = 0; j < data.length; j++) {
 				var arr = data[j].name.indexOf('-');
@@ -31,15 +31,24 @@
 					rowCnt += 1;
 				}
 			}
-			console.log("총 몇줄 : " +rowCnt);
-			
+			console.log("총 몇줄 : " +rowCnt); */
+			var arr="";
+			var row="";
 			for (var i = 0; i < data.length; i++) {
+					if(data[i].name.indexOf('-')== -1){
+						var row = `<tr> <td>${data[i].name}</td> <td>`
+							table.innerHTML += row
+					}else if(data[i].name.indexOf('-')>= 0){
+						var row = `${data[i].name} `
+							table.innerHTML += row
+					}
 					
-					var row = `<tr> <td>${data[i].name}</td> <td>${data[i].name}</td> </tr>`
+					
 
-				
-				table.innerHTML += row
 			}
+			var row=`</td> </tr>`;
+			table.innerHTML += row
+
 		}
 	</script>
 	
