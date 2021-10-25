@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<body>
+
+<ul id="box">
+<li data-a="0" depth="2">1</li>
+<li data-a="1" depth="1">2</li>
+<li data-a="2"  depth="2">3</li>
+<li data-a="3" depth="1">4</li>
+<li data-a="4" depth="2">5</li>
+</ul>
+
+<script>
+
+$(document).ready(function(){
+	
+	if($("#box>li").attr('depth')==2){
+		
+	$('#box>li').each(function(index){
+		$(this).attr('data-a',index);
+		console.log(index);
+	});
+	
+	}
+	
+	
+	
+	
+//each문 예제//////////////////////////////////////
+	
+	var target = null;
+	 
+	var arr = [
+	    {
+	          name : "kim",
+	          age : 10
+	    },{
+	          name : "lee",
+	          age : 13
+	    },{
+	          name : "park",
+	          age : 5
+	    }
+	];
+	 
+	$.each(arr, function(index, obj) {
+	      if(obj.name == "lee"){
+	            target = obj;
+	            return false;
+	      }
+	});
+	 
+	console.log("lee 씨의 나이는 " + target.age + "세 입니다.");
+
+	
+	//each문 예제 끝//////////////////////////////////////
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+});
+
+</script>
+
+
+
+
+
+</script>
+
+</body>
+</html>
