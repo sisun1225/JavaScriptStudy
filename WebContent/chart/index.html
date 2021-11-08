@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css"/>
+
+<script src="https://d3js.org/d3.v3.min.js"></script>     
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+
+
+
+
+<body>
+<h1>c3 chart 테스트</h1>
+<!-- 출처  https://dgkim5360.tistory.com/entry/c3-js-cheat-sheet -->
+<div id="areachart"></div>
+
+<script>
+var chart = c3.generate({
+	bindto: "#areachart",
+    data: {
+        columns: [
+            ['data1', 100, 300, 200, 400, 500],
+            ['data2', 10, 30, 20, 40, 50]
+        ],
+        types: {
+            data1: 'area-spline',
+            data2: 'area-spline'
+          }
+    }
+});
+</script>
+
+
+
+
+
+<div id="areachart2"></div>
+<script>
+var areachart2 = c3.generate({
+	  bindto: "#areachart2",
+	  data: {
+	    columns: [
+	      ['upper', 120, 180, 270, 400, 570, 800, 1150],
+	      ['data', 100, 150, 225, 350, 500, 700, 1000],
+	      ['lower', 80, 120, 180, 300, 430, 600,850]
+	    ],
+	    types: {
+	      data: 'spline',
+	      upper: 'area-spline',
+	      lower: 'area-spline'
+	    },
+	    colors: {
+	      data: "#000",
+	      upper: "rgb(165,194,230)",
+	      lower: "#fff",
+	    }
+	  },
+	  legend: {
+	    show: false,
+	  },
+	  point: {
+	    show: false,
+	  }
+	});
+</script>
+
+
+
+
+
+<div id="piechart"></div>
+
+<div style="text-align:center">
+  <h5>
+  차트div 바깥에서도 색깔을 연결할 수 있다.
+  </h5>
+  <span id="text-apple">사과</span>
+  <span id="text-walnut">호두</span>
+  <span id="text-berry">블루베리</span>
+  <span id="text-cheese">치즈</span>
+  <span id="text-strawberry">딸기</span>
+</div>
+
+
+<script>
+var pieData = {
+		  사과: 500,
+		  호두: 200,
+		  블루베리: 666,
+		  치즈: 54,
+		  딸기: 120
+		};
+		var chartDonut = c3.generate({
+		  bindto: "#piechart",
+		  data: {
+		    json: [pieData],
+		    keys: {
+		      value: Object.keys(pieData),
+		    },
+		    type: "donut",
+		  },
+		  donut: {
+		    title: "파이의 종류",
+		  },
+		});
+
+		var chartDonutColors = chartDonut.data.colors();
+		$("#text-apple").css("color", chartDonutColors["사과"]);
+		$("#text-walnut").css("color", chartDonutColors["호두"]);
+		$("#text-berry").css("color", chartDonutColors["블루베리"]);
+		$("#text-cheese").css("color", chartDonutColors["치즈"]);
+		$("#text-strawberry").css("color", chartDonutColors["딸기"]);
+
+</script>
+
+
+
+</body>
+</html>
