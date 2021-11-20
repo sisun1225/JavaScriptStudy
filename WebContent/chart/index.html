@@ -8,11 +8,46 @@
 <script src="https://d3js.org/d3.v3.min.js"></script>     
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
-
-
-
-
 <body>
+
+
+<h1>barchart</h1>
+<div id ="barchart"></div>
+<script>
+
+var data1 = "100, 300, 200, 400, 500";
+var type = "data1";
+var arr = JSON.parse("['data1'," + data1 + "]");
+console.log(typeof arr[0])
+console.log(arr)
+
+var data2 = "100, 300, 200, 400, 500";
+var type = "data1";
+var crr = JSON.parse(data2);
+console.log(typeof arr[0])
+console.log(crr)
+
+var data3 = "12, 154, 24, 1, 50";
+var brr = JSON.parse("[" + data3 + "]");
+console.log(typeof arr[0])
+console.log(brr)
+
+var chart = c3.generate({
+	bindto: "#barchart",
+    data: {
+        columns: [
+        	['data1', crr]
+        ],
+        type: 'bar'
+    },
+
+});
+</script>
+
+
+
+
+
 <h1>c3 chart 테스트</h1>
 <!-- 출처  https://dgkim5360.tistory.com/entry/c3-js-cheat-sheet -->
 <div id="areachart"></div>
