@@ -9,16 +9,31 @@
 <body>
 
 
-<h1>barchart2</h1>
+<h1>barchartddddd2222211</h1>
 <div id ="barchart"></div>
 <script>
 
-var data1 = "100, 300, 200, 400, 500";
-var type = "data1";
-var arr = JSON.parse("[" + data1 + "]");
-console.log(typeof arr[0])
-console.log(arr)
 
+/*
+https://www.delftstack.com/ko/howto/javascript/convert-string-to-array-javascript/
+	https://mkil.tistory.com/322
+	https://c3js.org/reference.html#data-columns
+		https://c3js.org/samples/chart_bar.html
+			https://webisfree.com/2014-01-25/[javascript]-%EB%B3%80%EC%88%98%EC%97%90%EC%84%9C-%ED%8A%B9%EC%A0%95%EB%AC%B8%EC%9E%90-%EA%B8%B0%EC%A4%80-%EC%9E%90%EB%A5%B4%EA%B8%B0(%EB%82%98%EB%88%84%EA%B8%B0)-split()
+https://programmerpsk.tistory.com/128
+*/
+
+var data1 = "100,300,200,400,500";
+var abc = data1.split(',');
+
+//var data1 = '{"data": 100, 300, 200, 400, 500}';
+data1 *=1;
+//var arr = JSON.parse("[" + data1 + "]");
+//var arr = JSON.parse("[" + data1 + "]");
+console.log(typeof abc);
+//console.log("test : " + arr);
+
+/*
 var data2 = "100, 300, 200, 400, 500";
 var type = "data1";
 var crr = JSON.parse("[" + data3 + "]");
@@ -29,17 +44,19 @@ var data3 = "12, 154, 24, 1, 50";
 var brr = JSON.parse("[" + data3 + "]");
 console.log(typeof brr[0])
 console.log(brr)
-
+*/
 var chart = c3.generate({
 	bindto: "#barchart",
     data: {
         columns: [
-            ['data1', 30, 200, 100, 400, 150, 250]
+        	['data1', abc]
         ],
         type: 'bar'
     },
 
 });
+
+// ['data1',100, 300, 200, 400, 500]
 </script>
 
 
