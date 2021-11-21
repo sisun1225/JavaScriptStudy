@@ -9,7 +9,7 @@
 <body>
 
 
-<h1>barchartddddd2222211</h1>
+<h1>barchart</h1>
 <div id ="barchart"></div>
 <script>
 
@@ -23,14 +23,17 @@ https://www.delftstack.com/ko/howto/javascript/convert-string-to-array-javascrip
 https://programmerpsk.tistory.com/128
 */
 
-var data1 = "100,300,200,400,500";
+var data1 = '{"data" : "100,300,200,400,500"}';
 var abc = data1.split(',');
+var abc1 = JSON.parse(data1);
+
 
 //var data1 = '{"data": 100, 300, 200, 400, 500}';
 data1 *=1;
 //var arr = JSON.parse("[" + data1 + "]");
 //var arr = JSON.parse("[" + data1 + "]");
-console.log(typeof abc);
+console.log(typeof data1);
+console.log(abc1);
 //console.log("test : " + arr);
 
 /*
@@ -49,7 +52,7 @@ var chart = c3.generate({
 	bindto: "#barchart",
     data: {
         columns: [
-        	['data1', abc]
+        	['data1', abc1]
         ],
         type: 'bar'
     },
