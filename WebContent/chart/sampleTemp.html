@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="jqueryui/style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css"/>
+<script src="https://d3js.org/d3.v3.min.js"></script>     
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+<style>
+
+</style>
+<body>
+<header>
+<h1>테스트용 샘플 기본양식</h1>
+</header>
+
+
+<h1>barchart</h1>
+<div id ="barchart"></div>
+
+
+
+
+<script>
+
+
+
+//월별 주문건수 차트 
+function order_analysis(parsedJson){
+
+  var datalist = "";
+  console.log("db에서 보낸 데이터 : " + datalist);
+  
+  var columndata = ['x', "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+  var chartdata = ["월별", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"];
+  
+  for(i=1; i<columndata.length; i++){
+    var _month = columndata[i];
+    console.log("칼럼"+_month);
+    for(j=0; j<datalist.length; j++){
+      var data = datalist[j];
+      var month = data.month;
+      var monthcount = data.monthcount;
+
+      if(month.indexOf(_month) > -1){
+      console.log("데이터"+monthcount);
+      chartdata[i] = monthcount;
+      console.log("출력");
+      }
+    }
+    
+  }
+  
+  var linechart = c3.generate({
+    bindto: "#barchart",
+      data: {
+        x: 'x',
+        columns:[
+        columndata,
+        chartdata
+        ]
+      }
+  });
+}
+
+</script>
+
+</body>
+</html>
