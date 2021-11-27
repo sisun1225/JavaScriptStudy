@@ -197,6 +197,46 @@ function sayHello(name ='friend'){
 
 
 ### 함수 표현식 화살표함수
+ let sayHello = function(){
+	 console.log('hello');
+ }
+ sayHello();
+ 
+ 함수선언문은 어디서든지 호출가능하다
+ 자바스크립트는 위에서 아래로 순차적으로 호출...
+ 자바스크립트는 코드위치가 실제로 올라가지 않더라도 
+ 함수부터 읽기 때문에 함수 실행을 위해서 해도된다
+ 이것이 호이스팅이다
+ 하지만 함수표현식은 코드에 도달해야지만 생성된다
+ 
+ 
+ let add = function(num1, num2){
+	 return num1 + num2;
+ }
+ 
+ 화살표함수(arrow function)로 바꾸면
+  let add =(num1, num2)=>{
+		return num1 + num2;  
+  }
+
+return문은 중괄호가 아닌 일반 괄호로 변경가능
+let add =(num1, num2)=>(
+	num1 + num2;  
+)
+ 
+리턴문이 한줄이라면 괄호도 생략가능
+let add =(num1, num2)=>num1 + num2;  
+
+인수가 하나라면 괄호도 생략가능
+let sayHello = nam => `Hello, ${name}`;
+
+리턴문 전에 여러 줄이 있따면 괄호 생략 불가능
+
+
+### 객체
+
+
+
 
 
  -->
@@ -204,11 +244,6 @@ function sayHello(name ='friend'){
  <script>
  
 
-
- 
- 
- 
- 
  </script>
 
 </body>
